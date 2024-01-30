@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -32,13 +34,24 @@ public class Book {
 
         private int price;
 
-        private Date pulishDate;
+        private Date publishDate;
 
         private Boolean isAvailable;
 
         @JoinColumn
         @ManyToOne
         private Author author;
+
+        @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+        public List<Transaction> transactionList = new ArrayList<>();
+
+        public Book(String bookName, Genre bookGenre, int noOfPages, int price, Date publishDate) {
+                this.bookName = bookName;
+                this.bookGenre = bookGenre;
+                this.noOfPages = noOfPages;
+                this.price = price;
+                this.publishDate = publishDate;
+        }
 
 
         

@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.Controllers;
 
+import com.example.LibraryManagementSystem.DTO.AssociateCardStudentRequest;
 import com.example.LibraryManagementSystem.Services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,10 @@ public class CardController {
         }
 
         @PutMapping("/associateCardAndStudent")
-        public ResponseEntity associateCardAndStudent(@RequestParam("studentId") Integer studentId ,@RequestParam("cardId") Integer cardId){
+        public ResponseEntity associateCardAndStudent(@RequestBody AssociateCardStudentRequest associateCardStudentRequest){
 
                 try {
-                        String res = cardService.associateCardAndStudent(studentId,cardId);
+                        String res = cardService.associateCardAndStudent(associateCardStudentRequest);
                         return new ResponseEntity(res, HttpStatus.OK);
                 }
                 catch (Exception e){

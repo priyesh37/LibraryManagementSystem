@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.Services;
 
+import com.example.LibraryManagementSystem.DTO.ModifyPhnNoRequest;
 import com.example.LibraryManagementSystem.Entities.Student;
 import com.example.LibraryManagementSystem.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,18 @@ public class StudentService {
 
 
         return student;
+    }
+
+    public String modifyPhnNo(ModifyPhnNoRequest modifyPhnNoRequest){
+
+        Integer studentId = modifyPhnNoRequest.getStudentId();
+        String newPhnNo = modifyPhnNoRequest.getNewPhnNo();
+
+        Student student = studentRepository.findById(studentId).get();
+        student.setPhoneNo(newPhnNo);
+        studentRepository.save(student);
+
+        return "Phone No. has been modified";
     }
 
 }

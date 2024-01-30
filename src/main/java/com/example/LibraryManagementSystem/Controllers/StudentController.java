@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.Controllers;
 
+import com.example.LibraryManagementSystem.DTO.ModifyPhnNoRequest;
 import com.example.LibraryManagementSystem.Entities.Student;
 import com.example.LibraryManagementSystem.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,14 @@ public class StudentController {
                 }catch (Exception e){
                         return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
                 }
+        }
+
+        @PutMapping("/modifyPhnNo")
+        public String modifyPhnNo(@RequestBody ModifyPhnNoRequest modifyPhnNoRequest){
+
+                String result = studentService.modifyPhnNo(modifyPhnNoRequest);
+
+                return result;
+
         }
 }

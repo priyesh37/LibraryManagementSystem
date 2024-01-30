@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.Services;
 
+import com.example.LibraryManagementSystem.DTO.AssociateCardStudentRequest;
 import com.example.LibraryManagementSystem.Entities.LibraryCard;
 import com.example.LibraryManagementSystem.Entities.Student;
 import com.example.LibraryManagementSystem.Enums.CardStatus;
@@ -31,7 +32,11 @@ public class CardService {
 
     }
 
-    public String  associateCardAndStudent(Integer studentId,Integer cardId) throws Exception{
+    public String  associateCardAndStudent(AssociateCardStudentRequest associateCardStudentRequest) throws Exception{
+
+        Integer cardId = associateCardStudentRequest.getCardId();
+        Integer studentId = associateCardStudentRequest.getStudentId();
+
 
         Optional<LibraryCard> optionalLibraryCard = cardRepository.findById(cardId);
         if(optionalLibraryCard.isEmpty()){
